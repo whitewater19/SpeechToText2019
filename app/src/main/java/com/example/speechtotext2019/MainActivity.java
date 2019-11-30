@@ -15,14 +15,15 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
-//1介面完
-//2左res New AndroidResourceDirectory, name改menu,type選menu建一個menu資料夾
-//3menu資料夾New Menu resource file,name改main_menu(menu_speech)
-//4在menu介面拉MenuItem給id(action_settings)
-//5menu介面右icon選圖案
-//6menu介面右showAsAction(在上方顯示),選always(如果沒勾選,就預設在3個點點的項目(menu_speech裡的Title可以改字)裡)
+///1介面完
+///2左res New AndroidResourceDirectory, name改menu,type選menu建一個menu資料夾
+///3menu資料夾New Menu resource file,name改main_menu(menu_speech)
+///4在menu介面拉MenuItem給id(action_settings)
+///5menu介面右icon選圖案
+///6menu介面右showAsAction(在上方顯示),選always(如果沒勾選,就預設在3個點點的項目(menu_speech裡的Title可以改字)裡)
                                      //可以多拉幾個MenuItem(改Title)
 public class MainActivity extends AppCompatActivity {
+///7
     private TextView txtSpeechInput;
     private ImageButton btnSpeak;
     private final int REQ_CODE_SPEECH_INPUT = 100;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         btnSpeak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                promptSpeechInput();//錄音
+                promptSpeechInput();//錄音recordSpeechInput();
             }
         });
     }
@@ -52,15 +53,20 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
                 getString(R.string.speech_prompt));
         try {
+//11紅,Add'catch' clause(s)
             startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+//12改catch( )內
+//13刪e.printStackTrace( ); 然後打Toast
         } catch (ActivityNotFoundException a) {
             Toast.makeText(getApplicationContext(),
                     getString(R.string.speech_not_supported),
                     Toast.LENGTH_SHORT).show();
         }
     }
+//14右產生Override方法
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//15紅,Add super call
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
@@ -106,3 +112,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+//9manifests授權
